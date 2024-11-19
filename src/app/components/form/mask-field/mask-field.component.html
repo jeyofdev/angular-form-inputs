@@ -1,0 +1,9 @@
+<label [for]="labelFor">{{ label }}</label>
+<p-inputMask
+  [mask]="mask"
+  formControlName="phone"
+  [autoClear]="false"
+  [disabled]="disabled"
+  (onInput)="onInputChange($event)"
+  (onFocus)="markAsTouched()"
+/>

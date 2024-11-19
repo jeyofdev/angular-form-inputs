@@ -41,12 +41,29 @@
     </div>
 
     <div class="form-control">
-      <label for="phone">Phone</label>
-      <p-inputMask
-        mask="99-99-99-99-99"
+      <app-mask-field
+        type="phone"
+        labelFor="phone"
+        label="Phone"
+        id="phone"
+        name="phone"
         formControlName="phone"
-        placeholder=""
-      />
+        [parentForm]="form"
+        controlName="phone"
+      ></app-mask-field>
+    </div>
+
+    <div class="form-control">
+      <app-mask-field
+        type="date"
+        labelFor="birthdate"
+        label="birthdate"
+        id="birthdate"
+        name="birthdate"
+        formControlName="birthdate"
+        [parentForm]="form"
+        controlName="birthdate"
+      ></app-mask-field>
     </div>
 
     <div class="form-control">

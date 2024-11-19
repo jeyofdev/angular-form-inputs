@@ -2,7 +2,6 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { InputMaskModule } from 'primeng/inputmask';
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
@@ -15,6 +14,7 @@ import {
 import { TextFieldComponent } from './components/form/text-field/text-field.component';
 import { TextareaFieldComponent } from './components/form/textarea-field/textarea-field.component';
 import { PasswordFieldComponent } from './components/form/password-field/password-field.component';
+import { MaskFieldComponent } from './components/form/mask-field/mask-field.component';
 
 interface City {
   name: string;
@@ -28,13 +28,13 @@ interface City {
     RouterOutlet,
     ReactiveFormsModule,
     ButtonModule,
-    InputMaskModule,
     DropdownModule,
     CheckboxModule,
     RadioButtonModule,
     TextFieldComponent,
     TextareaFieldComponent,
     PasswordFieldComponent,
+    MaskFieldComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
@@ -49,6 +49,7 @@ export class AppComponent implements OnInit {
   descriptionCtrl!: FormControl<string | null>;
   passwordCtrl!: FormControl<string | null>;
   phoneCtrl!: FormControl<string | null>;
+  birthdateCtrl!: FormControl<string | null>;
   cityCtrl!: FormControl<string | null>;
   languagesCtrl!: FormControl<string[] | null>;
   premiumCtrl!: FormControl<string | null>;
@@ -86,6 +87,7 @@ export class AppComponent implements OnInit {
       description: this.descriptionCtrl,
       password: this.passwordCtrl,
       phone: this.phoneCtrl,
+      birthdate: this.birthdateCtrl,
       city: this.cityCtrl,
       languages: this.languagesCtrl,
       premium: this.premiumCtrl,
@@ -97,6 +99,7 @@ export class AppComponent implements OnInit {
     this.descriptionCtrl = this._formBuilder.control('');
     this.passwordCtrl = this._formBuilder.control('');
     this.phoneCtrl = this._formBuilder.control('');
+    this.birthdateCtrl = this._formBuilder.control('');
     this.cityCtrl = this._formBuilder.control('');
     this.languagesCtrl = this._formBuilder.control([]);
     this.premiumCtrl = this._formBuilder.control('');
