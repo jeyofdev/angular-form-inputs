@@ -2,9 +2,6 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
-import { InputTextareaModule } from 'primeng/inputtextarea';
-import { PasswordModule } from 'primeng/password';
 import { InputMaskModule } from 'primeng/inputmask';
 import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -16,6 +13,8 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { TextFieldComponent } from './components/form/text-field/text-field.component';
+import { TextareaFieldComponent } from './components/form/textarea-field/textarea-field.component';
+import { PasswordFieldComponent } from './components/form/password-field/password-field.component';
 
 interface City {
   name: string;
@@ -29,14 +28,13 @@ interface City {
     RouterOutlet,
     ReactiveFormsModule,
     ButtonModule,
-    InputTextModule,
-    InputTextareaModule,
-    PasswordModule,
     InputMaskModule,
     DropdownModule,
     CheckboxModule,
     RadioButtonModule,
     TextFieldComponent,
+    TextareaFieldComponent,
+    PasswordFieldComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',

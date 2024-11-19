@@ -15,18 +15,29 @@
     </div>
 
     <div class="form-control">
-      <label for="description">Description</label>
-      <textarea rows="5" cols="30" pInputTextarea formControlName="description">
-      </textarea>
+      <app-textarea-field
+        labelFor="description"
+        label="Description"
+        id="description"
+        name="description"
+        formControlName="description"
+        [parentForm]="form"
+        controlName="description"
+      ></app-textarea-field>
     </div>
 
     <div class="form-control">
-      <label for="password">Password</label>
-      <p-password
-        formControlName="password"
+      <app-password-field
+        labelFor="password"
+        label="Password"
+        id="password"
+        name="password"
         [feedback]="false"
         [toggleMask]="true"
-      />
+        formControlName="password"
+        [parentForm]="form"
+        controlName="password"
+      ></app-password-field>
     </div>
 
     <div class="form-control">

@@ -1,0 +1,12 @@
+<label [for]="labelFor">{{ label }}</label>
+<textarea
+  pInputTextarea
+  [id]="id"
+  [name]="name"
+  [rows]="5"
+  [cols]="30"
+  [value]="value"
+  [disabled]="disabled"
+  (input)="onInputChange($event)"
+  (focus)="markAsTouched()"
+></textarea>
