@@ -15,6 +15,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { TextFieldComponent } from './components/form/text-field/text-field.component';
 
 interface City {
   name: string;
@@ -35,6 +36,7 @@ interface City {
     DropdownModule,
     CheckboxModule,
     RadioButtonModule,
+    TextFieldComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
@@ -42,7 +44,7 @@ interface City {
 })
 export class AppComponent implements OnInit {
   cityList: City[] | undefined;
-  languagesOptions: string[] = ['Javascript', 'Php', 'Java', 'Html'];
+  languagesOptions!: string[];
   form!: FormGroup;
 
   usernameCtrl!: FormControl<string | null>;

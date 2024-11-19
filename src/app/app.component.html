@@ -3,14 +3,15 @@
 <div class="container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form-control">
-      <label for="username">Username</label>
-      <input
-        type="text"
-        pInputText
+      <app-text-field
+        labelFor="username"
+        label="Username"
         id="username"
         name="username"
         formControlName="username"
-      />
+        [parentForm]="form"
+        controlName="username"
+      ></app-text-field>
     </div>
 
     <div class="form-control">

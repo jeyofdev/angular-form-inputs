@@ -1,0 +1,11 @@
+<label [for]="labelFor">{{ label }}</label>
+<input
+  type="text"
+  pInputText
+  [id]="id"
+  [name]="name"
+  [value]="value"
+  [disabled]="disabled"
+  (input)="onInputChange($event)"
+  (focus)="markAsTouched()"
+/>
