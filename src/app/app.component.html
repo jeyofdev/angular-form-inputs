@@ -13,6 +13,30 @@
       />
     </div>
 
+    <div class="form-control">
+      <label for="description">Description</label>
+      <textarea rows="5" cols="30" pInputTextarea formControlName="description">
+      </textarea>
+    </div>
+
+    <div class="form-control">
+      <label for="password">Password</label>
+      <p-password
+        formControlName="password"
+        [feedback]="false"
+        [toggleMask]="true"
+      />
+    </div>
+
+    <div class="form-control">
+      <label for="phone">Phone</label>
+      <p-inputMask
+        mask="99-99-99-99-99"
+        formControlName="phone"
+        placeholder=""
+      />
+    </div>
+
     <p-button type="submit" label="Submit" severity="info" />
   </form>
 

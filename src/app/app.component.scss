@@ -25,8 +25,31 @@ label {
   margin-bottom: 0.5rem;
 }
 
-input {
+input,
+textarea {
   width: 100%;
+}
+
+textarea {
+  resize: none;
+}
+
+:host ::ng-deep p-password {
+  .p-password {
+    width: 100%;
+
+    input {
+      width: 100%;
+      padding: 0.75rem 0.5rem;
+    }
+  }
+}
+
+:host ::ng-deep p-inputmask {
+  input {
+    width: 100%;
+    padding: 0.75rem 0.5rem;
+  }
 }
 
 :host ::ng-deep .p-button {

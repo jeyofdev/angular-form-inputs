@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { PasswordModule } from 'primeng/password';
+import { InputMaskModule } from 'primeng/inputmask';
+import { RadioButtonModule } from 'primeng/radiobutton';
+
 import {
   FormBuilder,
   FormControl,
@@ -19,6 +24,9 @@ import {
     ReactiveFormsModule,
     ButtonModule,
     InputTextModule,
+    InputTextareaModule,
+    PasswordModule,
+    InputMaskModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -26,6 +34,9 @@ import {
 export class AppComponent implements OnInit {
   form!: FormGroup;
   usernameCtrl!: FormControl<string | null>;
+  descriptionCtrl!: FormControl<string | null>;
+  passwordCtrl!: FormControl<string | null>;
+  phoneCtrl!: FormControl<string | null>;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -41,10 +52,16 @@ export class AppComponent implements OnInit {
   private _initMainForm() {
     this.form = this._formBuilder.group({
       username: this.usernameCtrl,
+      description: this.descriptionCtrl,
+      password: this.passwordCtrl,
+      phone: this.phoneCtrl,
     });
   }
 
   private _initFormControls(): void {
     this.usernameCtrl = this._formBuilder.control('');
+    this.descriptionCtrl = this._formBuilder.control('');
+    this.passwordCtrl = this._formBuilder.control('');
+    this.phoneCtrl = this._formBuilder.control('');
   }
 }
