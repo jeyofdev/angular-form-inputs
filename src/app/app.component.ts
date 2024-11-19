@@ -2,7 +2,6 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { DropdownModule } from 'primeng/dropdown';
 import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import {
@@ -15,6 +14,7 @@ import { TextFieldComponent } from './components/form/text-field/text-field.comp
 import { TextareaFieldComponent } from './components/form/textarea-field/textarea-field.component';
 import { PasswordFieldComponent } from './components/form/password-field/password-field.component';
 import { MaskFieldComponent } from './components/form/mask-field/mask-field.component';
+import { DropdownFieldComponent } from './components/form/dropdown-field/dropdown-field.component';
 
 interface City {
   name: string;
@@ -28,22 +28,22 @@ interface City {
     RouterOutlet,
     ReactiveFormsModule,
     ButtonModule,
-    DropdownModule,
     CheckboxModule,
     RadioButtonModule,
     TextFieldComponent,
     TextareaFieldComponent,
     PasswordFieldComponent,
     MaskFieldComponent,
+    DropdownFieldComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  cityList: City[] | undefined;
+  cityList!: City[];
   languagesOptions!: string[];
-  form!: FormGroup;
+  mainForm!: FormGroup;
 
   usernameCtrl!: FormControl<string | null>;
   descriptionCtrl!: FormControl<string | null>;
@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    console.log(this.mainForm.value);
   }
 
   onCheckboxChange(event: any, language: string): void {
@@ -81,8 +81,12 @@ export class AppComponent implements OnInit {
     this.languagesCtrl.setValue(selectedLanguages);
   }
 
+  onCitySelected(city: string): void {
+    this.cityCtrl.setValue(city);
+  }
+
   private _initMainForm() {
-    this.form = this._formBuilder.group({
+    this.mainForm = this._formBuilder.group({
       username: this.usernameCtrl,
       description: this.descriptionCtrl,
       password: this.passwordCtrl,

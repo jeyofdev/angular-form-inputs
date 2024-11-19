@@ -1,7 +1,7 @@
 <router-outlet></router-outlet>
 
 <div class="container">
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="mainForm" (ngSubmit)="onSubmit()">
     <div class="form-control">
       <app-text-field
         labelFor="username"
@@ -9,7 +9,7 @@
         id="username"
         name="username"
         formControlName="username"
-        [parentForm]="form"
+        [parentForm]="mainForm"
         controlName="username"
       ></app-text-field>
     </div>
@@ -21,7 +21,7 @@
         id="description"
         name="description"
         formControlName="description"
-        [parentForm]="form"
+        [parentForm]="mainForm"
         controlName="description"
       ></app-textarea-field>
     </div>
@@ -35,7 +35,7 @@
         [feedback]="false"
         [toggleMask]="true"
         formControlName="password"
-        [parentForm]="form"
+        [parentForm]="mainForm"
         controlName="password"
       ></app-password-field>
     </div>
@@ -48,7 +48,7 @@
         id="phone"
         name="phone"
         formControlName="phone"
-        [parentForm]="form"
+        [parentForm]="mainForm"
         controlName="phone"
       ></app-mask-field>
     </div>
@@ -61,20 +61,24 @@
         id="birthdate"
         name="birthdate"
         formControlName="birthdate"
-        [parentForm]="form"
+        [parentForm]="mainForm"
         controlName="birthdate"
       ></app-mask-field>
     </div>
 
     <div class="form-control">
-      <label for="city">City</label>
-      <p-dropdown
+      <app-dropdown-field
+        labelFor="city"
+        label="City"
+        id="city"
+        name="city"
+        [optionList]="cityList"
+        placeholder="Select a city"
         formControlName="city"
-        [options]="cityList"
-        optionLabel="name"
-        optionValue="name"
-        placeholder="Select a City"
-      />
+        [parentForm]="mainForm"
+        controlName="city"
+        (selectedValueChange)="onCitySelected($event)"
+      ></app-dropdown-field>
     </div>
 
     <div class="form-control">
@@ -84,7 +88,7 @@
           <p-checkbox
             [label]="language"
             (onChange)="onCheckboxChange($event, language)"
-            [checked]="form.value.languages?.includes(language)"
+            [checked]="mainForm.value.languages?.includes(language)"
           ></p-checkbox>
         </ng-container>
       </div>
@@ -112,5 +116,5 @@
     <p-button type="submit" label="Submit" severity="info" />
   </form>
 
-  <pre>{{ form.value | json }}</pre>
+  <pre>{{ mainForm.value | json }}</pre>
 </div>

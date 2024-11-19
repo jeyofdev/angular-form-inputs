@@ -1,0 +1,10 @@
+<label [for]="labelFor">{{ label }}</label>
+<p-dropdown
+  formControlName="city"
+  [options]="optionList"
+  optionLabel="name"
+  optionValue="name"
+  [placeholder]="placeholder"
+  (onChange)="onInputChange($event)"
+  (onFocus)="markAsTouched()"
+/>
