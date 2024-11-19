@@ -2,7 +2,6 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
-import { CheckboxModule } from 'primeng/checkbox';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import {
   FormBuilder,
@@ -15,6 +14,7 @@ import { TextareaFieldComponent } from './components/form/textarea-field/textare
 import { PasswordFieldComponent } from './components/form/password-field/password-field.component';
 import { MaskFieldComponent } from './components/form/mask-field/mask-field.component';
 import { DropdownFieldComponent } from './components/form/dropdown-field/dropdown-field.component';
+import { CheckboxFieldComponent } from './components/form/checkbox-field/checkbox-field.component';
 
 interface City {
   name: string;
@@ -28,13 +28,13 @@ interface City {
     RouterOutlet,
     ReactiveFormsModule,
     ButtonModule,
-    CheckboxModule,
     RadioButtonModule,
     TextFieldComponent,
     TextareaFieldComponent,
     PasswordFieldComponent,
     MaskFieldComponent,
     DropdownFieldComponent,
+    CheckboxFieldComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
@@ -65,20 +65,6 @@ export class AppComponent implements OnInit {
 
   onSubmit() {
     console.log(this.mainForm.value);
-  }
-
-  onCheckboxChange(event: any, language: string): void {
-    let selectedLanguages = [...(this.languagesCtrl.value || [])];
-
-    if (event.checked) {
-      if (!selectedLanguages.includes(language)) {
-        selectedLanguages.push(language);
-      }
-    } else {
-      selectedLanguages = selectedLanguages.filter((item) => item !== language);
-    }
-
-    this.languagesCtrl.setValue(selectedLanguages);
   }
 
   onCitySelected(city: string): void {

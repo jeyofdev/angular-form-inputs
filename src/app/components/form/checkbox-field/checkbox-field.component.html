@@ -1,0 +1,18 @@
+<p-checkbox
+  [label]="label"
+  [id]="id"
+  [name]="name"
+  [value]="id"
+  [disabled]="disabled"
+  (onChange)="onCheckboxChange($event)"
+  (focus)="markAsTouched()"
+></p-checkbox>
+
+<!-- (onChange)="onCheckboxChange($event, language)"
+  [checked]="mainForm.value.languages?.includes(language)" -->
+
+<!-- <p-checkbox
+            [label]="language"
+            (onChange)="onCheckboxChange($event, language)"
+            [checked]="mainForm.value.languages?.includes(language)"
+          ></p-checkbox> -->

@@ -85,11 +85,13 @@
       <label for="languages">Languages</label>
       <div class="checkbox-box">
         <ng-container *ngFor="let language of languagesOptions">
-          <p-checkbox
+          <app-checkbox-field
             [label]="language"
-            (onChange)="onCheckboxChange($event, language)"
-            [checked]="mainForm.value.languages?.includes(language)"
-          ></p-checkbox>
+            [id]="language"
+            [name]="language"
+            [parentForm]="mainForm"
+            formControlName="languages"
+          ></app-checkbox-field>
         </ng-container>
       </div>
     </div>
