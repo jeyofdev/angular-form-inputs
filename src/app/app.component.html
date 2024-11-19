@@ -37,6 +37,49 @@
       />
     </div>
 
+    <div class="form-control">
+      <label for="city">City</label>
+      <p-dropdown
+        formControlName="city"
+        [options]="cityList"
+        optionLabel="name"
+        optionValue="name"
+        placeholder="Select a City"
+      />
+    </div>
+
+    <div class="form-control">
+      <label for="languages">Languages</label>
+      <div class="checkbox-box">
+        <ng-container *ngFor="let language of languagesOptions">
+          <p-checkbox
+            [label]="language"
+            (onChange)="onCheckboxChange($event, language)"
+            [checked]="form.value.languages?.includes(language)"
+          ></p-checkbox>
+        </ng-container>
+      </div>
+    </div>
+
+    <div class="form-control">
+      <label for="premium">Premium</label>
+      <div class="radio-box">
+        <p-radioButton
+          label="Yes"
+          name="premium"
+          value="yes"
+          formControlName="premium"
+        ></p-radioButton>
+
+        <p-radioButton
+          label="No"
+          name="premium"
+          value="no"
+          formControlName="premium"
+        ></p-radioButton>
+      </div>
+    </div>
+
     <p-button type="submit" label="Submit" severity="info" />
   </form>
 

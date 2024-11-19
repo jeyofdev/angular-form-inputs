@@ -52,6 +52,21 @@ textarea {
   }
 }
 
+:host ::ng-deep p-dropdown {
+  display: block;
+  width: 100%;
+
+  .p-dropdown {
+    width: 100%;
+  }
+}
+
+.checkbox-box,
+.radio-box {
+  display: flex;
+  gap: 1rem;
+}
+
 :host ::ng-deep .p-button {
   width: 100%;
   padding: 0.5rem;
