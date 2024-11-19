@@ -99,19 +99,23 @@
     <div class="form-control">
       <label for="premium">Premium</label>
       <div class="radio-box">
-        <p-radioButton
+        <app-radio-field
           label="Yes"
+          id="yes"
           name="premium"
-          value="yes"
           formControlName="premium"
-        ></p-radioButton>
+          [parentForm]="mainForm"
+          controlName="premium"
+        ></app-radio-field>
 
-        <p-radioButton
+        <app-radio-field
           label="No"
+          id="no"
           name="premium"
-          value="no"
           formControlName="premium"
-        ></p-radioButton>
+          [parentForm]="mainForm"
+          controlName="premium"
+        ></app-radio-field>
       </div>
     </div>
 

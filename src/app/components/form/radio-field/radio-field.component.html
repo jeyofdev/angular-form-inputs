@@ -1,9 +1,8 @@
-<p-checkbox
+<p-radioButton
   [label]="label"
-  [id]="id"
   [name]="name"
   [value]="id"
   [disabled]="disabled"
-  (onChange)="onCheckboxChange($event)"
+  (onClick)="onRadioChange($event)"
   (focus)="markAsTouched()"
-></p-checkbox>
+></p-radioButton>
