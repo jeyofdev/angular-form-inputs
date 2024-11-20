@@ -212,6 +212,18 @@
       ></app-switch-field>
     </div>
 
+    <div class="form-control">
+      <app-editor-field
+        labelFor="biography"
+        label="Biography"
+        id="biography"
+        name="biography"
+        formControlName="biography"
+        [parentForm]="mainForm"
+        controlName="biography"
+      ></app-editor-field>
+    </div>
+
     <p-button
       type="submit"
       label="Submit"

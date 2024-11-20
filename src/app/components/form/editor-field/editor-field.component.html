@@ -1,0 +1,7 @@
+<label [for]="labelFor">{{ label }}</label>
+<p-editor
+  [id]="id"
+  (onTextChange)="onTextChange($event)"
+  (focus)="markAsTouched()"
+  [style]="{ height: '320px' }"
+/>
