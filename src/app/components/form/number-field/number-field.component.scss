@@ -1,0 +1,17 @@
+label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+:host ::ng-deep p-inputnumber {
+  width: 100%;
+
+  .p-inputnumber {
+    width: 100%;
+  }
+
+  input {
+    width: 100%;
+  }
+}

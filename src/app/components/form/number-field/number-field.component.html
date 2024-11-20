@@ -1,0 +1,10 @@
+<label [for]="labelFor">{{ label }}</label>
+<p-inputNumber
+  [inputId]="id"
+  [name]="name"
+  [disabled]="disabled"
+  [mode]="mode"
+  [currency]="currency"
+  (onInput)="onInputChange($event)"
+  (focus)="markAsTouched()"
+/>
