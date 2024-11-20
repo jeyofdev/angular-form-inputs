@@ -1,0 +1,9 @@
+<label [for]="labelFor">{{ label }}</label>
+<p-toggleButton
+  [id]="id"
+  [onLabel]="onLabel"
+  [offLabel]="offLabel"
+  [disabled]="disabled"
+  (onChange)="onToggleChange($event)"
+  (focus)="markAsTouched()"
+/>

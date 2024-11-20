@@ -119,6 +119,20 @@
       </div>
     </div>
 
+    <div class="form-control">
+      <app-toggle-field
+        labelFor="admin"
+        label="Admin"
+        id="admin"
+        name="admin"
+        [onLabel]="'Yes'"
+        [offLabel]="'No'"
+        formControlName="admin"
+        [parentForm]="mainForm"
+        controlName="admin"
+      ></app-toggle-field>
+    </div>
+
     <p-button type="submit" label="Submit" severity="info" />
   </form>
 

@@ -15,6 +15,7 @@ import { MaskFieldComponent } from './components/form/mask-field/mask-field.comp
 import { DropdownFieldComponent } from './components/form/dropdown-field/dropdown-field.component';
 import { CheckboxFieldComponent } from './components/form/checkbox-field/checkbox-field.component';
 import { RadioFieldComponent } from './components/form/radio-field/radio-field.component';
+import { ToggleFieldComponent } from './components/form/toggle-field/toggle-field.component';
 
 interface City {
   name: string;
@@ -35,6 +36,7 @@ interface City {
     DropdownFieldComponent,
     CheckboxFieldComponent,
     RadioFieldComponent,
+    ToggleFieldComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
@@ -53,6 +55,7 @@ export class AppComponent implements OnInit {
   cityCtrl!: FormControl<string | null>;
   languagesCtrl!: FormControl<string[] | null>;
   premiumCtrl!: FormControl<string | null>;
+  adminCtrl!: FormControl<boolean | null>;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -81,6 +84,7 @@ export class AppComponent implements OnInit {
       city: this.cityCtrl,
       languages: this.languagesCtrl,
       premium: this.premiumCtrl,
+      admin: this.adminCtrl,
     });
   }
 
@@ -93,6 +97,7 @@ export class AppComponent implements OnInit {
     this.cityCtrl = this._formBuilder.control('');
     this.languagesCtrl = this._formBuilder.control([]);
     this.premiumCtrl = this._formBuilder.control('');
+    this.adminCtrl = this._formBuilder.control(false);
   }
 
   private _getCities(): City[] {
