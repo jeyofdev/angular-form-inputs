@@ -1,0 +1,20 @@
+label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+input {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+:host::ng-deep p-slider {
+  display: flex;
+  justify-content: center;
+
+  .p-slider {
+    width: 95%;
+    background-color: rgb(101, 120, 189);
+  }
+}

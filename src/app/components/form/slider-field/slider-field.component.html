@@ -1,0 +1,18 @@
+<label [for]="labelFor">{{ label }}</label>
+<input
+  type="text"
+  pInputText
+  [value]="value"
+  [disabled]="disabled"
+  (input)="onInputChange($event)"
+  (focus)="markAsTouched()"
+/>
+<p-slider
+  [id]="id"
+  [min]="min"
+  [max]="max"
+  [ngModel]="value"
+  [disabled]="disabled"
+  (onChange)="onSliderChange($event)"
+  (focus)="markAsTouched()"
+/>

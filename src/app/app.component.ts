@@ -6,6 +6,7 @@ import {
   FormBuilder,
   FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
 } from '@angular/forms';
 import { TextFieldComponent } from './components/form/text-field/text-field.component';
@@ -16,6 +17,7 @@ import { DropdownFieldComponent } from './components/form/dropdown-field/dropdow
 import { CheckboxFieldComponent } from './components/form/checkbox-field/checkbox-field.component';
 import { RadioFieldComponent } from './components/form/radio-field/radio-field.component';
 import { ToggleFieldComponent } from './components/form/toggle-field/toggle-field.component';
+import { SliderFieldComponent } from './components/form/slider-field/slider-field.component';
 
 interface City {
   name: string;
@@ -28,6 +30,7 @@ interface City {
     CommonModule,
     RouterOutlet,
     ReactiveFormsModule,
+    FormsModule,
     ButtonModule,
     TextFieldComponent,
     TextareaFieldComponent,
@@ -37,6 +40,7 @@ interface City {
     CheckboxFieldComponent,
     RadioFieldComponent,
     ToggleFieldComponent,
+    SliderFieldComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
@@ -56,6 +60,7 @@ export class AppComponent implements OnInit {
   languagesCtrl!: FormControl<string[] | null>;
   premiumCtrl!: FormControl<string | null>;
   adminCtrl!: FormControl<boolean | null>;
+  ageCtrl!: FormControl<number | null>;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -85,6 +90,7 @@ export class AppComponent implements OnInit {
       languages: this.languagesCtrl,
       premium: this.premiumCtrl,
       admin: this.adminCtrl,
+      age: this.ageCtrl,
     });
   }
 
@@ -98,6 +104,7 @@ export class AppComponent implements OnInit {
     this.languagesCtrl = this._formBuilder.control([]);
     this.premiumCtrl = this._formBuilder.control('');
     this.adminCtrl = this._formBuilder.control(false);
+    this.ageCtrl = this._formBuilder.control(0);
   }
 
   private _getCities(): City[] {

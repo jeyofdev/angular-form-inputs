@@ -3,64 +3,78 @@ import {
   AbstractControl,
   ControlValueAccessor,
   FormGroup,
+  FormsModule,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
-import {
-  ToggleButtonChangeEvent,
-  ToggleButtonModule,
-} from 'primeng/togglebutton';
+import { InputTextModule } from 'primeng/inputtext';
+import { SliderChangeEvent, SliderModule } from 'primeng/slider';
 
 @Component({
-  selector: 'app-toggle-field',
+  selector: 'app-slider-field',
   standalone: true,
-  imports: [ToggleButtonModule],
-  templateUrl: './toggle-field.component.html',
-  styleUrl: './toggle-field.component.scss',
+  imports: [FormsModule, SliderModule, InputTextModule],
+  templateUrl: './slider-field.component.html',
+  styleUrl: './slider-field.component.scss',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: ToggleFieldComponent,
+      useExisting: SliderFieldComponent,
       multi: true,
     },
   ],
 })
-export class ToggleFieldComponent implements ControlValueAccessor, OnInit {
+export class SliderFieldComponent implements ControlValueAccessor, OnInit {
   @Input({ required: true }) labelFor!: string;
   @Input({ required: true }) label!: string;
   @Input({ required: true }) id!: string;
   @Input({ required: true }) name!: string;
-  @Input({ required: true }) onLabel!: string;
-  @Input({ required: true }) offLabel!: string;
+  @Input({ required: true }) min!: number;
+  @Input({ required: true }) max!: number;
 
   @Input({ required: true }) parentForm!: FormGroup;
   @Input() groupName!: string;
 
-  checked!: boolean;
+  value!: number;
   disabled!: boolean;
 
-  onChanged!: (checked: boolean) => void;
+  onChanged!: (value: number) => void;
   onTouched!: () => void;
 
   ngOnInit(): void {
     this.disabled = false;
   }
 
-  onToggleChange(event: ToggleButtonChangeEvent): void {
-    console.log('ok', event);
-
+  onInputChange(event: Event): void {
     if (this.disabled) {
       return;
     }
 
-    this.checked = event.checked as boolean;
-    this.onChanged(this.checked);
+    const inputValue = (event.target as HTMLInputElement).value;
+
+    const numericValue = Math.max(
+      this.min,
+      Math.min(this.max, +inputValue || 0)
+    );
+
+    this.value = numericValue;
+
+    this.onChanged(this.value);
   }
 
-  writeValue(checked: boolean): void {
-    this.checked = checked;
+  onSliderChange(event: SliderChangeEvent): void {
+    if (this.disabled) {
+      return;
+    }
+
+    this.value = event.value as number;
+    this.onChanged(this.value);
   }
 
-  registerOnChange(fn: (vchecked: boolean) => void): void {
+  writeValue(value: number): void {
+    this.value = value;
+  }
+
+  registerOnChange(fn: (value: number) => void): void {
     this.onChanged = fn;
   }
 
