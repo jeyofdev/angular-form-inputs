@@ -23,6 +23,7 @@ import { SelectButtonFieldComponent } from './components/form/select-button-fiel
 import { NumberFieldComponent } from './components/form/number-field/number-field.component';
 import { SwitchFieldComponent } from './components/form/switch-field/switch-field.component';
 import { EditorFieldComponent } from './components/form/editor-field/editor-field.component';
+import { ColorPickerFieldComponent } from './components/form/color-picker-field/color-picker-field.component';
 
 interface City {
   name: string;
@@ -56,6 +57,7 @@ export interface Active {
     NumberFieldComponent,
     SwitchFieldComponent,
     EditorFieldComponent,
+    ColorPickerFieldComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
@@ -83,6 +85,7 @@ export class AppComponent implements OnInit {
   priceCtrl!: FormControl<string | null>;
   memberCtrl!: FormControl<boolean | null>;
   biographyCtrl!: FormControl<string | null>;
+  colorCtrl!: FormControl<string | null>;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -120,6 +123,7 @@ export class AppComponent implements OnInit {
       price: this.priceCtrl,
       member: this.memberCtrl,
       biography: this.biographyCtrl,
+      color: this.colorCtrl,
     });
   }
 
@@ -139,7 +143,7 @@ export class AppComponent implements OnInit {
     this.zipCodeCtrl = this._formBuilder.control('');
     this.priceCtrl = this._formBuilder.control('');
     this.memberCtrl = this._formBuilder.control(false);
-    this.biographyCtrl = this._formBuilder.control('');
+    this.colorCtrl = this._formBuilder.control('');
   }
 
   private _getCities(): City[] {

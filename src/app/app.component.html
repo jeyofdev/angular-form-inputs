@@ -224,6 +224,18 @@
       ></app-editor-field>
     </div>
 
+    <div class="form-control">
+      <app-color-picker-field
+        labelFor="color"
+        label="Color"
+        id="color"
+        name="color"
+        formControlName="color"
+        [parentForm]="mainForm"
+        controlName="color"
+      ></app-color-picker-field>
+    </div>
+
     <p-button
       type="submit"
       label="Submit"

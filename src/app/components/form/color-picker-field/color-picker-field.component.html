@@ -1,0 +1,7 @@
+<label [for]="labelFor">{{ label }}</label>
+<p-colorPicker
+  [id]="id"
+  [disabled]="disabled"
+  (onChange)="onColorChange($event)"
+  (focus)="markAsTouched()"
+/>

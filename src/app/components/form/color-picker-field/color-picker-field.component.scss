@@ -1,0 +1,25 @@
+label {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+:host ::ng-deep p-colorpicker {
+  .p-colorpicker-panel {
+    .p-colorpicker-hue {
+      background: transparent url("/assets/img/color-picker/hue-RMMBQOAC.png")
+        no-repeat left top;
+    }
+
+    .p-colorpicker-color {
+      background: transparent url("/assets/img/color-picker/color-3LUHUBGQ.png")
+        no-repeat left top;
+    }
+  }
+
+  .p-colorpicker-preview,
+  .p-fluid .p-colorpicker-preview.p-inputtext {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
