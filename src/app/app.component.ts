@@ -18,6 +18,7 @@ import { CheckboxFieldComponent } from './components/form/checkbox-field/checkbo
 import { RadioFieldComponent } from './components/form/radio-field/radio-field.component';
 import { ToggleFieldComponent } from './components/form/toggle-field/toggle-field.component';
 import { SliderFieldComponent } from './components/form/slider-field/slider-field.component';
+import { RatingFieldComponent } from './components/form/rating-field/rating-field.component';
 
 interface City {
   name: string;
@@ -41,6 +42,7 @@ interface City {
     RadioFieldComponent,
     ToggleFieldComponent,
     SliderFieldComponent,
+    RatingFieldComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
@@ -61,6 +63,7 @@ export class AppComponent implements OnInit {
   premiumCtrl!: FormControl<string | null>;
   adminCtrl!: FormControl<boolean | null>;
   ageCtrl!: FormControl<number | null>;
+  ratingCtrl!: FormControl<number | null>;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -91,6 +94,7 @@ export class AppComponent implements OnInit {
       premium: this.premiumCtrl,
       admin: this.adminCtrl,
       age: this.ageCtrl,
+      rating: this.ratingCtrl,
     });
   }
 
@@ -105,6 +109,7 @@ export class AppComponent implements OnInit {
     this.premiumCtrl = this._formBuilder.control('');
     this.adminCtrl = this._formBuilder.control(false);
     this.ageCtrl = this._formBuilder.control(0);
+    this.ratingCtrl = this._formBuilder.control(0);
   }
 
   private _getCities(): City[] {

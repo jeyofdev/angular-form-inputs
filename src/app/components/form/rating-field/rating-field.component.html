@@ -1,0 +1,9 @@
+<label [for]="labelFor">{{ label }}</label>
+<p-rating
+  [id]="id"
+  [cancel]="cancel"
+  [stars]="stars"
+  [disabled]="disabled"
+  (onRate)="onRatingChange($event)"
+  (focus)="markAsTouched()"
+/>

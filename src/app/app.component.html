@@ -147,6 +147,20 @@
       ></app-slider-field>
     </div>
 
+    <div class="form-control">
+      <app-rating-field
+        labelFor="rating"
+        label="Rating"
+        id="rating"
+        name="rating"
+        [cancel]="false"
+        [stars]="4"
+        formControlName="rating"
+        [parentForm]="mainForm"
+        controlName="rating"
+      ></app-rating-field>
+    </div>
+
     <p-button type="submit" label="Submit" severity="info" />
   </form>
 
