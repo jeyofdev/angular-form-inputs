@@ -1,0 +1,10 @@
+<label [for]="labelFor">{{ label }}</label>
+<p-selectButton
+  [options]="optionList"
+  formControlName="value"
+  optionLabel="label"
+  optionValue="value"
+  [disabled]="disabled"
+  (onOptionClick)="onInputChange($event)"
+  (focus)="markAsTouched()"
+/>

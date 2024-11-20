@@ -19,9 +19,15 @@ import { RadioFieldComponent } from './components/form/radio-field/radio-field.c
 import { ToggleFieldComponent } from './components/form/toggle-field/toggle-field.component';
 import { SliderFieldComponent } from './components/form/slider-field/slider-field.component';
 import { RatingFieldComponent } from './components/form/rating-field/rating-field.component';
+import { SelectButtonFieldComponent } from './components/form/select-button-field/select-button-field.component';
 
 interface City {
   name: string;
+}
+
+export interface Active {
+  label: string;
+  value: string;
 }
 
 @Component({
@@ -43,6 +49,7 @@ interface City {
     ToggleFieldComponent,
     SliderFieldComponent,
     RatingFieldComponent,
+    SelectButtonFieldComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
@@ -51,6 +58,7 @@ interface City {
 export class AppComponent implements OnInit {
   cityList!: City[];
   languagesOptions!: string[];
+  activeOptions!: Active[];
   mainForm!: FormGroup;
 
   usernameCtrl!: FormControl<string | null>;
@@ -64,12 +72,14 @@ export class AppComponent implements OnInit {
   adminCtrl!: FormControl<boolean | null>;
   ageCtrl!: FormControl<number | null>;
   ratingCtrl!: FormControl<number | null>;
+  activeCtrl!: FormControl<string | null>;
 
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
     this.cityList = this._getCities();
     this.languagesOptions = this._getLanguagesOptions();
+    this.activeOptions = this._getActiveOptions();
     this._initFormControls();
     this._initMainForm();
   }
@@ -95,6 +105,7 @@ export class AppComponent implements OnInit {
       admin: this.adminCtrl,
       age: this.ageCtrl,
       rating: this.ratingCtrl,
+      active: this.activeCtrl,
     });
   }
 
@@ -110,6 +121,7 @@ export class AppComponent implements OnInit {
     this.adminCtrl = this._formBuilder.control(false);
     this.ageCtrl = this._formBuilder.control(0);
     this.ratingCtrl = this._formBuilder.control(0);
+    this.activeCtrl = this._formBuilder.control('');
   }
 
   private _getCities(): City[] {
@@ -126,5 +138,12 @@ export class AppComponent implements OnInit {
 
   private _getLanguagesOptions(): string[] {
     return ['Javascript', 'Php', 'Java', 'Python', 'Go'];
+  }
+
+  private _getActiveOptions(): Active[] {
+    return [
+      { label: 'Yes', value: 'yes' },
+      { label: 'No', value: 'no' },
+    ];
   }
 }

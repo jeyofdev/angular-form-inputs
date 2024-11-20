@@ -161,7 +161,25 @@
       ></app-rating-field>
     </div>
 
-    <p-button type="submit" label="Submit" severity="info" />
+    <div class="form-control">
+      <app-select-button-field
+        labelFor="active"
+        label="Active"
+        id="active"
+        name="active"
+        [optionList]="activeOptions"
+        formControlName="active"
+        [parentForm]="mainForm"
+        controlName="active"
+      ></app-select-button-field>
+    </div>
+
+    <p-button
+      type="submit"
+      label="Submit"
+      severity="info"
+      styleClass="btn-form"
+    />
   </form>
 
   <pre>{{ mainForm.value | json }}</pre>
