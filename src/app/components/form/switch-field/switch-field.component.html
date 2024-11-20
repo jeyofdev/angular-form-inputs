@@ -1,11 +1,8 @@
 <label [for]="labelFor">{{ label }}</label>
-<p-inputNumber
+<p-inputSwitch
   [inputId]="id"
   [name]="name"
   [disabled]="disabled"
-  [mode]="mode"
-  [currency]="currency"
-  [disabled]="disabled"
-  (onInput)="onInputChange($event)"
+  (onChange)="onSwitchChange($event)"
   (focus)="markAsTouched()"
 />

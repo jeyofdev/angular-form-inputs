@@ -200,6 +200,18 @@
       ></app-number-field>
     </div>
 
+    <div class="form-control">
+      <app-switch-field
+        labelFor="member"
+        label="Member"
+        id="member"
+        name="member"
+        formControlName="member"
+        [parentForm]="mainForm"
+        controlName="member"
+      ></app-switch-field>
+    </div>
+
     <p-button
       type="submit"
       label="Submit"

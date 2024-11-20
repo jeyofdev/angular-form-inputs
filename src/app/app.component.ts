@@ -21,6 +21,7 @@ import { SliderFieldComponent } from './components/form/slider-field/slider-fiel
 import { RatingFieldComponent } from './components/form/rating-field/rating-field.component';
 import { SelectButtonFieldComponent } from './components/form/select-button-field/select-button-field.component';
 import { NumberFieldComponent } from './components/form/number-field/number-field.component';
+import { SwitchFieldComponent } from './components/form/switch-field/switch-field.component';
 
 interface City {
   name: string;
@@ -52,6 +53,7 @@ export interface Active {
     RatingFieldComponent,
     SelectButtonFieldComponent,
     NumberFieldComponent,
+    SwitchFieldComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
@@ -77,6 +79,7 @@ export class AppComponent implements OnInit {
   activeCtrl!: FormControl<string | null>;
   zipCodeCtrl!: FormControl<string | null>;
   priceCtrl!: FormControl<string | null>;
+  memberCtrl!: FormControl<boolean | null>;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -112,6 +115,7 @@ export class AppComponent implements OnInit {
       active: this.activeCtrl,
       zipCode: this.zipCodeCtrl,
       price: this.priceCtrl,
+      member: this.memberCtrl,
     });
   }
 
@@ -130,6 +134,7 @@ export class AppComponent implements OnInit {
     this.activeCtrl = this._formBuilder.control('');
     this.zipCodeCtrl = this._formBuilder.control('');
     this.priceCtrl = this._formBuilder.control('');
+    this.memberCtrl = this._formBuilder.control(false);
   }
 
   private _getCities(): City[] {
