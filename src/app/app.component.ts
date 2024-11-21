@@ -24,6 +24,7 @@ import { NumberFieldComponent } from './components/form/number-field/number-fiel
 import { SwitchFieldComponent } from './components/form/switch-field/switch-field.component';
 import { EditorFieldComponent } from './components/form/editor-field/editor-field.component';
 import { ColorPickerFieldComponent } from './components/form/color-picker-field/color-picker-field.component';
+import { CalendarFieldComponent } from './components/form/calendar-field/calendar-field.component';
 
 interface City {
   name: string;
@@ -58,6 +59,7 @@ export interface Active {
     SwitchFieldComponent,
     EditorFieldComponent,
     ColorPickerFieldComponent,
+    CalendarFieldComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
@@ -86,6 +88,7 @@ export class AppComponent implements OnInit {
   memberCtrl!: FormControl<boolean | null>;
   biographyCtrl!: FormControl<string | null>;
   colorCtrl!: FormControl<string | null>;
+  calendarCtrl!: FormControl<Date | null>;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -124,6 +127,7 @@ export class AppComponent implements OnInit {
       member: this.memberCtrl,
       biography: this.biographyCtrl,
       color: this.colorCtrl,
+      calendar: this.calendarCtrl,
     });
   }
 
@@ -144,6 +148,7 @@ export class AppComponent implements OnInit {
     this.priceCtrl = this._formBuilder.control('');
     this.memberCtrl = this._formBuilder.control(false);
     this.colorCtrl = this._formBuilder.control('');
+    this.calendarCtrl = this._formBuilder.control(null);
   }
 
   private _getCities(): City[] {

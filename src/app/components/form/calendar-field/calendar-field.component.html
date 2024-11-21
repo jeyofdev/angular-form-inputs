@@ -1,0 +1,9 @@
+<label [for]="labelFor">{{ label }}</label>
+<p-calendar
+  [id]="id"
+  [name]="name"
+  [dateFormat]="dateFormat"
+  [disabled]="disabled"
+  (onSelect)="onSelectChange($event)"
+  (focus)="markAsTouched()"
+/>

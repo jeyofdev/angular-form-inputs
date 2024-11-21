@@ -236,6 +236,19 @@
       ></app-color-picker-field>
     </div>
 
+    <div class="form-control">
+      <app-calendar-field
+        labelFor="calendar"
+        label="Calendar"
+        id="calendar"
+        name="calendar"
+        dateFormat="DD dd MM yy"
+        formControlName="calendar"
+        [parentForm]="mainForm"
+        controlName="calendar"
+      ></app-calendar-field>
+    </div>
+
     <p-button
       type="submit"
       label="Submit"
