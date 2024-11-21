@@ -25,8 +25,13 @@ import { SwitchFieldComponent } from './components/form/switch-field/switch-fiel
 import { EditorFieldComponent } from './components/form/editor-field/editor-field.component';
 import { ColorPickerFieldComponent } from './components/form/color-picker-field/color-picker-field.component';
 import { CalendarFieldComponent } from './components/form/calendar-field/calendar-field.component';
+import { AutocompleteFieldComponent } from './components/form/autocomplete-field/autocomplete-field.component';
 
 interface City {
+  name: string;
+}
+
+interface Job {
   name: string;
 }
 
@@ -60,6 +65,7 @@ export interface Active {
     EditorFieldComponent,
     ColorPickerFieldComponent,
     CalendarFieldComponent,
+    AutocompleteFieldComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './app.component.html',
@@ -67,6 +73,7 @@ export interface Active {
 })
 export class AppComponent implements OnInit {
   cityList!: City[];
+  jobList!: City[];
   languagesOptions!: string[];
   activeOptions!: Active[];
   mainForm!: FormGroup;
@@ -89,6 +96,7 @@ export class AppComponent implements OnInit {
   biographyCtrl!: FormControl<string | null>;
   colorCtrl!: FormControl<string | null>;
   calendarCtrl!: FormControl<Date | null>;
+  jobCtrl!: FormControl<string | null>;
 
   constructor(private _formBuilder: FormBuilder) {}
 
@@ -96,6 +104,7 @@ export class AppComponent implements OnInit {
     this.cityList = this._getCities();
     this.languagesOptions = this._getLanguagesOptions();
     this.activeOptions = this._getActiveOptions();
+    this.jobList = this._getJobOptions();
     this._initFormControls();
     this._initMainForm();
   }
@@ -106,6 +115,10 @@ export class AppComponent implements OnInit {
 
   onCitySelected(city: string): void {
     this.cityCtrl.setValue(city);
+  }
+
+  onJobSelected(job: string): void {
+    this.jobCtrl.setValue(job);
   }
 
   private _initMainForm() {
@@ -128,6 +141,7 @@ export class AppComponent implements OnInit {
       biography: this.biographyCtrl,
       color: this.colorCtrl,
       calendar: this.calendarCtrl,
+      job: this.jobCtrl,
     });
   }
 
@@ -149,6 +163,7 @@ export class AppComponent implements OnInit {
     this.memberCtrl = this._formBuilder.control(false);
     this.colorCtrl = this._formBuilder.control('');
     this.calendarCtrl = this._formBuilder.control(null);
+    this.jobCtrl = this._formBuilder.control('');
   }
 
   private _getCities(): City[] {
@@ -171,6 +186,19 @@ export class AppComponent implements OnInit {
     return [
       { label: 'Yes', value: 'yes' },
       { label: 'No', value: 'no' },
+    ];
+  }
+
+  private _getJobOptions(): Job[] {
+    return [
+      { name: 'Front-end' },
+      { name: 'Back-end' },
+      { name: 'Fullstack' },
+      { name: 'Front React' },
+      { name: 'Front Angular' },
+      { name: 'Back Php' },
+      { name: 'Back Java' },
+      { name: 'Back Go' },
     ];
   }
 }

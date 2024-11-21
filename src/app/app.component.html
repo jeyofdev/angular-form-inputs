@@ -82,6 +82,21 @@
     </div>
 
     <div class="form-control">
+      <app-autocomplete-field
+        labelFor="job"
+        label="Job"
+        id="job"
+        name="job"
+        [optionList]="jobList"
+        placeholder="Select a job"
+        formControlName="job"
+        [parentForm]="mainForm"
+        controlName="job"
+        (selectedValueChange)="onJobSelected($event)"
+      ></app-autocomplete-field>
+    </div>
+
+    <div class="form-control">
       <label for="languages">Languages</label>
       <div class="checkbox-box">
         <ng-container *ngFor="let language of languagesOptions">

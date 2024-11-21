@@ -1,0 +1,11 @@
+<label [for]="labelFor">{{ label }}</label>
+<p-autoComplete
+  [suggestions]="filteredOptions"
+  [dropdown]="true"
+  [placeholder]="placeholder"
+  optionLabel="name"
+  optionValue="name"
+  (completeMethod)="filterOptions($event)"
+  (onSelect)="onOptionSelect($event)"
+>
+</p-autoComplete>
