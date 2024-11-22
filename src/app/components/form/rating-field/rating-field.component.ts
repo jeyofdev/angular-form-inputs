@@ -1,10 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  ControlValueAccessor,
-  FormGroup,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { AbstractControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import { RatingModule, RatingRateEvent } from 'primeng/rating';
 
 @Component({
@@ -21,7 +17,7 @@ import { RatingModule, RatingRateEvent } from 'primeng/rating';
     },
   ],
 })
-export class RatingFieldComponent implements ControlValueAccessor, OnInit {
+export class RatingFieldComponent extends FormControlValueAccessorBase<number> {
   @Input({ required: true }) labelFor!: string;
   @Input({ required: true }) label!: string;
   @Input({ required: true }) id!: string;
@@ -32,16 +28,6 @@ export class RatingFieldComponent implements ControlValueAccessor, OnInit {
   @Input({ required: true }) parentForm!: FormGroup;
   @Input() groupName!: string;
 
-  value!: number;
-  disabled!: boolean;
-
-  onChanged!: (value: number) => void;
-  onTouched!: () => void;
-
-  ngOnInit(): void {
-    this.disabled = false;
-  }
-
   onRatingChange(event: RatingRateEvent): void {
     if (this.disabled) {
       return;
@@ -49,26 +35,6 @@ export class RatingFieldComponent implements ControlValueAccessor, OnInit {
 
     this.value = event.value;
     this.onChanged(this.value);
-  }
-
-  writeValue(value: number): void {
-    this.value = value;
-  }
-
-  registerOnChange(fn: (value: number) => void): void {
-    this.onChanged = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
-
-  markAsTouched(): void {
-    this.onTouched();
   }
 
   getFormControl(

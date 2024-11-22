@@ -1,10 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  ControlValueAccessor,
-  FormGroup,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { AbstractControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import { InputMaskModule } from 'primeng/inputmask';
 
 @Component({
@@ -21,7 +17,10 @@ import { InputMaskModule } from 'primeng/inputmask';
     },
   ],
 })
-export class MaskFieldComponent implements ControlValueAccessor, OnInit {
+export class MaskFieldComponent
+  extends FormControlValueAccessorBase<string>
+  implements OnInit
+{
   @Input({ required: true }) labelFor!: string;
   @Input({ required: true }) label!: string;
   @Input({ required: true }) id!: string;
@@ -30,15 +29,10 @@ export class MaskFieldComponent implements ControlValueAccessor, OnInit {
   @Input({ required: true }) parentForm!: FormGroup;
   @Input() groupName!: string;
 
-  value!: string;
-  disabled!: boolean;
   mask!: string;
 
-  onChanged!: (value: string) => void;
-  onTouched!: () => void;
-
-  ngOnInit(): void {
-    this.disabled = false;
+  override ngOnInit(): void {
+    super.ngOnInit();
 
     if (this.type === 'date') {
       this.mask = '99/99/9999';
@@ -55,26 +49,6 @@ export class MaskFieldComponent implements ControlValueAccessor, OnInit {
     this.value = (event.target as HTMLInputElement).value;
 
     this.onChanged(this.value);
-  }
-
-  writeValue(value: string): void {
-    this.value = value;
-  }
-
-  registerOnChange(fn: (value: string) => void): void {
-    this.onChanged = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
-
-  markAsTouched(): void {
-    this.onTouched();
   }
 
   getFormControl(

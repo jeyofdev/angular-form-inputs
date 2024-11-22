@@ -1,10 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  ControlValueAccessor,
-  FormGroup,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { AbstractControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import {
   ToggleButtonChangeEvent,
   ToggleButtonModule,
@@ -24,7 +20,7 @@ import {
     },
   ],
 })
-export class ToggleFieldComponent implements ControlValueAccessor, OnInit {
+export class ToggleFieldComponent extends FormControlValueAccessorBase<boolean> {
   @Input({ required: true }) labelFor!: string;
   @Input({ required: true }) label!: string;
   @Input({ required: true }) id!: string;
@@ -35,16 +31,6 @@ export class ToggleFieldComponent implements ControlValueAccessor, OnInit {
   @Input({ required: true }) parentForm!: FormGroup;
   @Input() groupName!: string;
 
-  checked!: boolean;
-  disabled!: boolean;
-
-  onChanged!: (checked: boolean) => void;
-  onTouched!: () => void;
-
-  ngOnInit(): void {
-    this.disabled = false;
-  }
-
   onToggleChange(event: ToggleButtonChangeEvent): void {
     console.log('ok', event);
 
@@ -52,28 +38,8 @@ export class ToggleFieldComponent implements ControlValueAccessor, OnInit {
       return;
     }
 
-    this.checked = event.checked as boolean;
-    this.onChanged(this.checked);
-  }
-
-  writeValue(checked: boolean): void {
-    this.checked = checked;
-  }
-
-  registerOnChange(fn: (vchecked: boolean) => void): void {
-    this.onChanged = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
-
-  markAsTouched(): void {
-    this.onTouched();
+    this.value = event.checked as boolean;
+    this.onChanged(this.value);
   }
 
   getFormControl(

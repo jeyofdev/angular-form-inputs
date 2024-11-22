@@ -1,10 +1,6 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  ControlValueAccessor,
-  FormGroup,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { Component, forwardRef, Input } from '@angular/core';
+import { AbstractControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import { RadioButtonModule } from 'primeng/radiobutton';
 
 @Component({
@@ -21,22 +17,12 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     },
   ],
 })
-export class RadioFieldComponent implements ControlValueAccessor, OnInit {
+export class RadioFieldComponent extends FormControlValueAccessorBase<string> {
   @Input() label!: string;
   @Input() id!: string;
   @Input() name!: string;
   @Input() parentForm!: FormGroup;
   @Input() groupName!: string;
-
-  value!: string;
-  disabled!: boolean;
-
-  onChanged!: (value: string) => void;
-  onTouched!: () => void;
-
-  ngOnInit(): void {
-    this.disabled = false;
-  }
 
   onRadioChange(event: any): void {
     if (this.disabled) {
@@ -45,26 +31,6 @@ export class RadioFieldComponent implements ControlValueAccessor, OnInit {
 
     this.value = event.value;
     this.onChanged(this.value);
-  }
-
-  writeValue(value: string): void {
-    this.value = value;
-  }
-
-  registerOnChange(fn: (value: string) => void): void {
-    this.onChanged = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
-
-  markAsTouched(): void {
-    this.onTouched();
   }
 
   getFormControl(

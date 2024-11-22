@@ -1,10 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  ControlValueAccessor,
-  FormGroup,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { Component, Input } from '@angular/core';
+import { AbstractControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import { EditorModule, EditorTextChangeEvent } from 'primeng/editor';
 
 @Component({
@@ -21,23 +17,13 @@ import { EditorModule, EditorTextChangeEvent } from 'primeng/editor';
     },
   ],
 })
-export class EditorFieldComponent implements ControlValueAccessor, OnInit {
+export class EditorFieldComponent extends FormControlValueAccessorBase<string> {
   @Input({ required: true }) labelFor!: string;
   @Input({ required: true }) label!: string;
   @Input({ required: true }) id!: string;
   @Input({ required: true }) name!: string;
   @Input({ required: true }) parentForm!: FormGroup;
   @Input() groupName!: string;
-
-  value!: string;
-  disabled!: boolean;
-
-  onChanged!: (value: string) => void;
-  onTouched!: () => void;
-
-  ngOnInit(): void {
-    this.disabled = false;
-  }
 
   onTextChange(event: EditorTextChangeEvent): void {
     if (this.disabled) {
@@ -46,26 +32,6 @@ export class EditorFieldComponent implements ControlValueAccessor, OnInit {
 
     this.value = event.htmlValue;
     this.onChanged(this.value);
-  }
-
-  writeValue(value: string): void {
-    this.value = value;
-  }
-
-  registerOnChange(fn: (value: string) => void): void {
-    this.onChanged = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
-
-  markAsTouched(): void {
-    this.onTouched();
   }
 
   getFormControl(

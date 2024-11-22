@@ -3,15 +3,10 @@ import {
   EventEmitter,
   forwardRef,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
-import {
-  AbstractControl,
-  ControlValueAccessor,
-  FormGroup,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { AbstractControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import {
   AutoCompleteCompleteEvent,
   AutoCompleteModule,
@@ -32,9 +27,7 @@ import {
     },
   ],
 })
-export class AutocompleteFieldComponent
-  implements ControlValueAccessor, OnInit
-{
+export class AutocompleteFieldComponent extends FormControlValueAccessorBase<string> {
   @Input({ required: true }) labelFor!: string;
   @Input({ required: true }) label!: string;
   @Input({ required: true }) id!: string;
@@ -48,16 +41,6 @@ export class AutocompleteFieldComponent
   filteredOptions!: any[];
 
   @Output() selectedValueChange = new EventEmitter<any>();
-
-  value!: string;
-  disabled!: boolean;
-
-  onChanged!: (value: string) => void;
-  onTouched!: () => void;
-
-  ngOnInit(): void {
-    this.disabled = false;
-  }
 
   filterOptions(event: AutoCompleteCompleteEvent) {
     let filtered: any[] = [];
@@ -81,26 +64,6 @@ export class AutocompleteFieldComponent
     this.value = event.value.name;
     this.onChanged(event.value.name);
     this.selectedValueChange.emit(this.value);
-  }
-
-  writeValue(value: string): void {
-    this.value = value;
-  }
-
-  registerOnChange(fn: (value: string) => void): void {
-    this.onChanged = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
-
-  markAsTouched(): void {
-    this.onTouched();
   }
 
   getFormControl(

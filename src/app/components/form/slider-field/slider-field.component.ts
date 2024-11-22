@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   AbstractControl,
-  ControlValueAccessor,
   FormGroup,
   FormsModule,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
+import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import { InputTextModule } from 'primeng/inputtext';
 import { SliderChangeEvent, SliderModule } from 'primeng/slider';
 
@@ -23,7 +23,7 @@ import { SliderChangeEvent, SliderModule } from 'primeng/slider';
     },
   ],
 })
-export class SliderFieldComponent implements ControlValueAccessor, OnInit {
+export class SliderFieldComponent extends FormControlValueAccessorBase<number> {
   @Input({ required: true }) labelFor!: string;
   @Input({ required: true }) label!: string;
   @Input({ required: true }) id!: string;
@@ -33,16 +33,6 @@ export class SliderFieldComponent implements ControlValueAccessor, OnInit {
 
   @Input({ required: true }) parentForm!: FormGroup;
   @Input() groupName!: string;
-
-  value!: number;
-  disabled!: boolean;
-
-  onChanged!: (value: number) => void;
-  onTouched!: () => void;
-
-  ngOnInit(): void {
-    this.disabled = false;
-  }
 
   onInputChange(event: Event): void {
     if (this.disabled) {
@@ -68,26 +58,6 @@ export class SliderFieldComponent implements ControlValueAccessor, OnInit {
 
     this.value = event.value as number;
     this.onChanged(this.value);
-  }
-
-  writeValue(value: number): void {
-    this.value = value;
-  }
-
-  registerOnChange(fn: (value: number) => void): void {
-    this.onChanged = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
-
-  markAsTouched(): void {
-    this.onTouched();
   }
 
   getFormControl(

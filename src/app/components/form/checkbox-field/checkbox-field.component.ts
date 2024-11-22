@@ -1,10 +1,6 @@
-import { Component, forwardRef, Input, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  ControlValueAccessor,
-  FormGroup,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { Component, forwardRef, Input } from '@angular/core';
+import { AbstractControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import { CheckboxModule } from 'primeng/checkbox';
 
 @Component({
@@ -21,22 +17,14 @@ import { CheckboxModule } from 'primeng/checkbox';
     },
   ],
 })
-export class CheckboxFieldComponent implements OnInit, ControlValueAccessor {
+export class CheckboxFieldComponent extends FormControlValueAccessorBase<
+  string[]
+> {
   @Input() label!: string;
   @Input() id!: string;
   @Input() name!: string;
   @Input() parentForm!: FormGroup;
   @Input() groupName!: string;
-
-  value: string[] = [];
-  disabled: boolean = false;
-
-  onChanged!: (value: string[]) => void;
-  onTouched!: () => void;
-
-  ngOnInit(): void {
-    this.disabled = false;
-  }
 
   onCheckboxChange(event: any): void {
     if (this.disabled) {
@@ -49,28 +37,6 @@ export class CheckboxFieldComponent implements OnInit, ControlValueAccessor {
       this.value = this.value.filter((val) => val !== this.id);
     }
     this.onChanged(this.value);
-  }
-
-  writeValue(value: string[]): void {
-    if (value) {
-      this.value = value;
-    }
-  }
-
-  registerOnChange(fn: (value: string[]) => void): void {
-    this.onChanged = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(isDisabled: boolean): void {
-    this.disabled = isDisabled;
-  }
-
-  markAsTouched(): void {
-    this.onTouched();
   }
 
   getFormControl(
