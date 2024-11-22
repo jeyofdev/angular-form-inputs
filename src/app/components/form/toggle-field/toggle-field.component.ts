@@ -5,11 +5,12 @@ import {
   ToggleButtonChangeEvent,
   ToggleButtonModule,
 } from 'primeng/togglebutton';
+import { LabelComponent } from '@components/form/label/label.component';
 
 @Component({
   selector: 'app-toggle-field',
   standalone: true,
-  imports: [ToggleButtonModule],
+  imports: [ToggleButtonModule, LabelComponent],
   templateUrl: './toggle-field.component.html',
   styleUrl: './toggle-field.component.scss',
   providers: [

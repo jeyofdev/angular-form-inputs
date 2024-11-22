@@ -12,11 +12,12 @@ import {
   AutoCompleteModule,
   AutoCompleteSelectEvent,
 } from 'primeng/autocomplete';
+import { LabelComponent } from '@components/form/label/label.component';
 
 @Component({
   selector: 'app-autocomplete-field',
   standalone: true,
-  imports: [AutoCompleteModule],
+  imports: [AutoCompleteModule, LabelComponent],
   templateUrl: './autocomplete-field.component.html',
   styleUrl: './autocomplete-field.component.scss',
   providers: [

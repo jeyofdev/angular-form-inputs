@@ -3,11 +3,12 @@ import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import { InputTextModule } from 'primeng/inputtext';
 import { SliderChangeEvent, SliderModule } from 'primeng/slider';
+import { LabelComponent } from '@components/form/label/label.component';
 
 @Component({
   selector: 'app-slider-field',
   standalone: true,
-  imports: [FormsModule, SliderModule, InputTextModule],
+  imports: [FormsModule, SliderModule, InputTextModule, LabelComponent],
   templateUrl: './slider-field.component.html',
   styleUrl: './slider-field.component.scss',
   providers: [

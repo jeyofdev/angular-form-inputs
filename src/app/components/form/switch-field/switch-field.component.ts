@@ -2,11 +2,12 @@ import { Component, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import { InputSwitchChangeEvent, InputSwitchModule } from 'primeng/inputswitch';
+import { LabelComponent } from '@components/form/label/label.component';
 
 @Component({
   selector: 'app-switch-field',
   standalone: true,
-  imports: [InputSwitchModule],
+  imports: [InputSwitchModule, LabelComponent],
   templateUrl: './switch-field.component.html',
   styleUrl: './switch-field.component.scss',
   providers: [

@@ -2,11 +2,12 @@ import { Component, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import { InputTextModule } from 'primeng/inputtext';
+import { LabelComponent } from '@components/form/label/label.component';
 
 @Component({
   selector: 'app-text-field',
   standalone: true,
-  imports: [InputTextModule],
+  imports: [InputTextModule, LabelComponent],
   templateUrl: './text-field.component.html',
   styleUrl: './text-field.component.scss',
   providers: [

@@ -2,11 +2,12 @@ import { Component, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import { RatingModule, RatingRateEvent } from 'primeng/rating';
+import { LabelComponent } from '@components/form/label/label.component';
 
 @Component({
   selector: 'app-rating-field',
   standalone: true,
-  imports: [RatingModule],
+  imports: [RatingModule, LabelComponent],
   templateUrl: './rating-field.component.html',
   styleUrl: './rating-field.component.scss',
   providers: [

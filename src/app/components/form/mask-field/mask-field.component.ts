@@ -1,12 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import { InputMaskModule } from 'primeng/inputmask';
+import { LabelComponent } from '@components/form/label/label.component';
 
 @Component({
   selector: 'app-mask-field',
   standalone: true,
-  imports: [InputMaskModule],
+  imports: [InputMaskModule, LabelComponent],
   templateUrl: './mask-field.component.html',
   styleUrl: './mask-field.component.scss',
   providers: [

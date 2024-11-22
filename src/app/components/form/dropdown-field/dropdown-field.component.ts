@@ -8,11 +8,12 @@ import {
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import { DropdownChangeEvent, DropdownModule } from 'primeng/dropdown';
+import { LabelComponent } from '@components/form/label/label.component';
 
 @Component({
   selector: 'app-dropdown-field',
   standalone: true,
-  imports: [DropdownModule],
+  imports: [DropdownModule, LabelComponent],
   templateUrl: './dropdown-field.component.html',
   styleUrl: './dropdown-field.component.scss',
   providers: [

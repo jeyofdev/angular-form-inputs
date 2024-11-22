@@ -1,12 +1,13 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { LabelComponent } from '@components/form/label/label.component';
 
 @Component({
   selector: 'app-textarea-field',
   standalone: true,
-  imports: [InputTextareaModule],
+  imports: [InputTextareaModule, LabelComponent],
   templateUrl: './textarea-field.component.html',
   styleUrl: './textarea-field.component.scss',
   providers: [

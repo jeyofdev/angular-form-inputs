@@ -2,11 +2,12 @@ import { Component, Input } from '@angular/core';
 import { NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import { InputNumberInputEvent, InputNumberModule } from 'primeng/inputnumber';
+import { LabelComponent } from '@components/form/label/label.component';
 
 @Component({
   selector: 'app-number-field',
   standalone: true,
-  imports: [InputNumberModule],
+  imports: [InputNumberModule, LabelComponent],
   templateUrl: './number-field.component.html',
   styleUrl: './number-field.component.scss',
   providers: [
