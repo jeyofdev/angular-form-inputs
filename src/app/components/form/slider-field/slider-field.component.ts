@@ -1,10 +1,5 @@
 import { Component, Input } from '@angular/core';
-import {
-  AbstractControl,
-  FormGroup,
-  FormsModule,
-  NG_VALUE_ACCESSOR,
-} from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { FormControlValueAccessorBase } from '@utils/form-control-value-accessor-base.class';
 import { InputTextModule } from 'primeng/inputtext';
 import { SliderChangeEvent, SliderModule } from 'primeng/slider';
@@ -27,12 +22,8 @@ export class SliderFieldComponent extends FormControlValueAccessorBase<number> {
   @Input({ required: true }) labelFor!: string;
   @Input({ required: true }) label!: string;
   @Input({ required: true }) id!: string;
-  @Input({ required: true }) name!: string;
   @Input({ required: true }) min!: number;
   @Input({ required: true }) max!: number;
-
-  @Input({ required: true }) parentForm!: FormGroup;
-  @Input() groupName!: string;
 
   onInputChange(event: Event): void {
     if (this.disabled) {
@@ -58,26 +49,5 @@ export class SliderFieldComponent extends FormControlValueAccessorBase<number> {
 
     this.value = event.value as number;
     this.onChanged(this.value);
-  }
-
-  getFormControl(
-    groupName: string,
-    parentForm: FormGroup,
-    controlName: string
-  ) {
-    if (groupName) {
-      const group = parentForm.get(groupName) as FormGroup;
-      return group ? group.get(controlName) : null;
-    } else {
-      return parentForm.get(controlName);
-    }
-  }
-
-  get control(): AbstractControl<any, any> | null {
-    return this.getFormControl(
-      this.groupName || '',
-      this.parentForm,
-      this.name
-    );
   }
 }

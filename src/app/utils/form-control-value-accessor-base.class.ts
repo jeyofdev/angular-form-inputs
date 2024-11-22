@@ -1,8 +1,10 @@
 import { Directive, OnInit } from '@angular/core';
 import { ControlValueAccessor } from '@angular/forms';
+import { FormControlAccessor } from './form-control-accessor.class';
 
 @Directive()
-export abstract class FormControlValueAccessorBase<T>
+export class FormControlValueAccessorBase<T>
+  extends FormControlAccessor
   implements ControlValueAccessor, OnInit
 {
   value!: T;

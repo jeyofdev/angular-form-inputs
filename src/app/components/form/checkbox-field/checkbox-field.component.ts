@@ -22,9 +22,6 @@ export class CheckboxFieldComponent extends FormControlValueAccessorBase<
 > {
   @Input() label!: string;
   @Input() id!: string;
-  @Input() name!: string;
-  @Input() parentForm!: FormGroup;
-  @Input() groupName!: string;
 
   onCheckboxChange(event: any): void {
     if (this.disabled) {
@@ -37,26 +34,5 @@ export class CheckboxFieldComponent extends FormControlValueAccessorBase<
       this.value = this.value.filter((val) => val !== this.id);
     }
     this.onChanged(this.value);
-  }
-
-  getFormControl(
-    groupName: string,
-    parentForm: FormGroup,
-    controlName: string
-  ) {
-    if (groupName) {
-      const group = parentForm.get(groupName) as FormGroup;
-      return group ? group.get(controlName) : null;
-    } else {
-      return parentForm.get(controlName);
-    }
-  }
-
-  get control(): AbstractControl<any, any> | null {
-    return this.getFormControl(
-      this.groupName || '',
-      this.parentForm,
-      this.name
-    );
   }
 }

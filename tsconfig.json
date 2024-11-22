@@ -22,7 +22,8 @@
     "useDefineForClassFields": false,
     "lib": ["ES2022", "dom"],
     "paths": {
-      "@utils/*": ["app/utils/*"]
+      "@utils/*": ["app/utils/*"],
+      "@interfaces/*": ["app/interfaces/*"]
     }
   },
   "angularCompilerOptions": {

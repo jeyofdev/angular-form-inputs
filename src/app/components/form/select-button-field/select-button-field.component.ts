@@ -25,11 +25,7 @@ export class SelectButtonFieldComponent extends FormControlValueAccessorBase<str
   @Input({ required: true }) labelFor!: string;
   @Input({ required: true }) label!: string;
   @Input({ required: true }) id!: string;
-  @Input({ required: true }) name!: string;
   @Input({ required: true }) optionList!: Active[];
-
-  @Input({ required: true }) parentForm!: FormGroup;
-  @Input() groupName!: string;
 
   onInputChange(event: SelectButtonOptionClickEvent): void {
     if (this.disabled) {
@@ -38,26 +34,5 @@ export class SelectButtonFieldComponent extends FormControlValueAccessorBase<str
 
     this.value = event.option.value;
     this.onChanged(this.value);
-  }
-
-  getFormControl(
-    groupName: string,
-    parentForm: FormGroup,
-    controlName: string
-  ) {
-    if (groupName) {
-      const group = parentForm.get(groupName) as FormGroup;
-      return group ? group.get(controlName) : null;
-    } else {
-      return parentForm.get(controlName);
-    }
-  }
-
-  get control(): AbstractControl<any, any> | null {
-    return this.getFormControl(
-      this.groupName || '',
-      this.parentForm,
-      this.name
-    );
   }
 }
