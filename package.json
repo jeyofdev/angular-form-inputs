@@ -1,6 +1,23 @@
 {
   "name": "angular-form-inputs",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeyofdev/angular-form-inputs.git"
+  },
+  "keywords": [
+    "javascript",
+    "angular",
+    "primeng",
+    "form",
+    "ControlValueAccessor"
+  ],
+  "author": "jeyofdev <jgregoire.dev@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeyofdev/angular-form-inputs/issues"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve --o --port 3000",
